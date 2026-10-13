@@ -1,4 +1,3 @@
-
 enum FromWho { me, hers }
 
 class Message {
@@ -9,6 +8,6 @@ class Message {
   Message({
     required this.text,
     this.imageUrl,
-    this.fromWho
+    required this.fromWho,
   });
 }

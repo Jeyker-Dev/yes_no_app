@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
+import '../../../domain/entities/message.dart';
 
 class MyMessageBubble extends StatelessWidget {
-  const MyMessageBubble({super.key});
+  final Message message;
+
+  const MyMessageBubble({
+    super.key,
+    required this.message,
+  });
 
   @override
   Widget build(BuildContext context) {
-
-    final colors = Theme.of(context);
+    final colors = Theme.of(context).colorScheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
-            decoration: BoxDecoration(
-              color: colors.primaryColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-                bottomLeft: Radius.circular(20),
-              ),
+          decoration: BoxDecoration(
+            color: colors.primary,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              message.text,
+              style: const TextStyle(color: Colors.white),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: const Text('Hola Mundo'),
-            )),
-        const SizedBox(
-          height: 10,
+          ),
         ),
+        const SizedBox(height: 10),
       ],
     );
   }
