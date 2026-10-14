@@ -32,9 +32,7 @@ class ChatScreen extends StatelessWidget {
 class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final ChatProvider chatProvider = context.watch<ChatProvider>();
-
 
     return SafeArea(
       child: Padding(
@@ -43,17 +41,17 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
+                controller: chatProvider.chatScrollController,
                 itemCount: chatProvider.messageList.length,
                 itemBuilder: (context, index) {
                   final message = chatProvider.messageList[index];
 
-                  return ( message.fromWho == FromWho.me )
-                  ? MyMessageBubble( message: message )
-                  : HerMessageBubble( );
+                  return (message.fromWho == FromWho.me)
+                      ? MyMessageBubble(message: message)
+                      : HerMessageBubble(message: message);
                 },
               ),
             ),
-
             MessageFieldBox(
               onValue: (value) => chatProvider.sendMessage(value),
             ),
